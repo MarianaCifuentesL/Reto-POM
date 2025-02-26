@@ -14,11 +14,11 @@ public class ContactUsFormTest extends TestBase {
         assertTrue(homePage.isHomePageVisible(), "La página de inicio no se cargó correctamente.");
         homePage.accessContactUsForm();
 
-        assertTrue(contactUsFormPage.isGetInTouchVisible(), "No se encontró el texto 'GET IN TOUCH'.");
-        contactUsFormPage.sendForm();
-        assertEquals("Success! Your details have been submitted successfully.", contactUsFormPage.getSuccessMessage());
+        assertTrue(contactUsPage.isGetInTouchVisible(), "No se encontró el texto 'GET IN TOUCH'.");
+        contactUsPage.sendForm();
+        assertEquals("Success! Your details have been submitted successfully.", contactUsPage.getSuccessMessage());
 
-        contactUsFormPage.goToHomePage();
+        contactUsPage.goToHomePage();
         assertTrue(homePage.isHomePageVisible(), "No se volvió correctamente a la página de inicio.");
     }
 }

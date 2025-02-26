@@ -12,7 +12,12 @@ public class HomePage extends CommonActionPages{
     }
 
     By contactUsButton = By.xpath("//a[@href='/contact_us']");
+    By productsButton = By.xpath("//a[@href='/products']");
     By homeBanner = By.id("slider-carousel");
+
+    public void accessProductsPage() {
+        clickElement(productsButton);
+    }
 
     public void accessContactUsForm() {
         clickElement(contactUsButton);

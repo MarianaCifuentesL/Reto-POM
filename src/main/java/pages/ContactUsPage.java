@@ -8,9 +8,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.io.File;
 import java.time.Duration;
 
-public class ContactUsFormPage extends CommonActionPages {
+public class ContactUsPage extends CommonActionPages {
 
-    public ContactUsFormPage(WebDriver driver) {
+    public ContactUsPage(WebDriver driver) {
         super(driver);
     }
 

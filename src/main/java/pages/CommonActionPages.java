@@ -54,10 +54,11 @@ public class CommonActionPages {
         }
     }
 
-
     public String getElementText(By locator) {
         return driver.findElement(locator).getText();
     }
 
-
+    public int getElementCount(By locator) {
+        return driver.findElements(locator).size();
+    }
 }
