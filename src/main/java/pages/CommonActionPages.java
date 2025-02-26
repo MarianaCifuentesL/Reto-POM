@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -60,5 +61,10 @@ public class CommonActionPages {
 
     public int getElementCount(By locator) {
         return driver.findElements(locator).size();
+    }
+
+    public void scrollToElement(By locator) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(locator));
     }
 }

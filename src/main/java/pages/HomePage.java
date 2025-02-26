@@ -14,6 +14,10 @@ public class HomePage extends CommonActionPages{
     By contactUsButton = By.xpath("//a[@href='/contact_us']");
     By productsButton = By.xpath("//a[@href='/products']");
     By homeBanner = By.id("slider-carousel");
+    By subscriptionText = By.xpath("//h2[contains(text(), 'Subscription')]");
+    By emailInput = By.id("susbscribe_email");
+    By subscribeButton = By.id("subscribe");
+    By successMessage = By.xpath("//div[@class='alert-success alert']");
 
     public void accessProductsPage() {
         clickElement(productsButton);
@@ -25,6 +29,24 @@ public class HomePage extends CommonActionPages{
 
     public boolean isHomePageVisible() {
         return isElementVisible(homeBanner, Duration.ofSeconds(5));
+    }
+
+    public void scrollToSubscriptionSection() {
+        scrollToElement(subscriptionText);
+    }
+
+    public boolean isSubscriptionTextVisible() {
+        return isElementVisible(subscriptionText, Duration.ofSeconds(5));
+    }
+
+    public void subscribeWithEmail() {
+        String email = "mariana@email.com";
+        writeText(emailInput, email);
+        clickElement(subscribeButton);
+    }
+
+    public String getSubscriptionSuccessMessage() {
+        return getElementText(successMessage);
     }
 
 }
