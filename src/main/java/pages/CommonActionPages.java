@@ -44,6 +44,17 @@ public class CommonActionPages {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+    public boolean isElementVisible(By locator, Duration timeInSeconds) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, timeInSeconds);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            return driver.findElement(locator).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+
     public String getElementText(By locator) {
         return driver.findElement(locator).getText();
     }

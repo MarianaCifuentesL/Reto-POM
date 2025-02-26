@@ -14,6 +14,7 @@ public class ContactUsFormPage extends CommonActionPages {
         super(driver);
     }
 
+    By getInTouchText = By.xpath("//h2[contains(text(),'Get In Touch')]");
     By nameInput = By.xpath("//input[@name='name']");
     By emailInput = By.xpath("//input[@name='email']");
     By subjectlInput = By.xpath("//input[@name='subject']");
@@ -21,6 +22,11 @@ public class ContactUsFormPage extends CommonActionPages {
     By filelInput = By.xpath("//input[@name='upload_file']");
     By submitButton = By.xpath("//input[@name='submit']");
     By successMessage = By.xpath("//div[@class='status alert alert-success']");
+    By homeButton = By.xpath("//a[@href='/']");
+
+    public boolean isGetInTouchVisible() {
+        return isElementVisible(getInTouchText, Duration.ofSeconds(5));
+    }
 
     public void sendForm() {
 
@@ -46,5 +52,9 @@ public class ContactUsFormPage extends CommonActionPages {
 
     public String getSuccessMessage() {
         return getElementText(successMessage);
+    }
+
+    public void goToHomePage() {
+        clickElement(homeButton);
     }
 }
