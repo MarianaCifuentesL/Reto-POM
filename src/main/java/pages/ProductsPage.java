@@ -1,9 +1,12 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.time.Instant;
+import java.util.List;
 
 public class ProductsPage extends CommonActionPages {
 
@@ -16,9 +19,12 @@ public class ProductsPage extends CommonActionPages {
     By allProductsHeader = By.xpath("//h2[contains(text(), 'All Products')]");
     By searchedProductsHeader = By.xpath("//h2[contains(text(), 'Searched Products')]");
     By productList = By.xpath("//div[@class='features_items']/div");
+    By addToCartButtons = By.xpath("//div[@class='productinfo text-center']//a[@class='btn btn-default add-to-cart']");
+//    List<WebElement> addToCartButtons = driver.findElements(By.xpath("//div[@class='product']//a[@class='btn btn-default add-to-cart']"));
 
-    public void searchProduct() {
-        String product = "Dress";
+    By continueShoppingButton = By.xpath("//button[@class='btn btn-success close-modal btn-block']");
+
+    public void searchProduct(String product) {
         writeText(searchInput, product);
         clickElement(searchButton);
     }
@@ -34,4 +40,22 @@ public class ProductsPage extends CommonActionPages {
     public boolean isProductsPageVisible() {
         return isElementVisible(allProductsHeader, Duration.ofSeconds(5));
     }
+
+    public void addAllSearchedProductsToCart() {
+        List<WebElement> buttons = driver.findElements(addToCartButtons);
+
+
+        for (WebElement button : buttons) {
+            button.click(); // Clic en "Agregar al carrito"
+
+            try {
+                WebDriverWait wait = waitTimeInSeconds(Duration.ofSeconds(5));
+                WebElement popupButton = wait.until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
+                popupButton.click(); // Cierra el popup si aparece
+            } catch (TimeoutException e) {
+                System.out.println("No se encontró el botón de continuar comprando, se sigue con el siguiente producto.");
+            }
+        }
+    }
+
 }

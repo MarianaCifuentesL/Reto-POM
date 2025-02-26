@@ -13,7 +13,7 @@ public class SearchProductTest extends TestBase {
         homePage.accessProductsPage();
 
         assertTrue(productsPage.isProductsPageVisible(), "No se cargó la página de 'All Products'.");
-        productsPage.searchProduct();
+        productsPage.searchProduct("Dress");
 
         assertTrue(productsPage.isSearchResultVisible(), "No se encontró el encabezado 'Searched Products'.");
         assertTrue(productsPage.areProductsDisplayed(), "No se encontraron productos en la búsqueda.");

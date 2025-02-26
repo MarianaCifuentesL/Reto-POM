@@ -3,9 +3,7 @@ package base;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
-import pages.ContactUsPage;
-import pages.HomePage;
-import pages.ProductsPage;
+import pages.*;
 
 public class TestBase {
 
@@ -13,6 +11,11 @@ public class TestBase {
     protected HomePage homePage;
     protected ContactUsPage contactUsPage;
     protected ProductsPage productsPage;
+    protected CartPage cartPage;
+    protected LoginPage loginPage;
+    protected SignupPage signupPage;
+    protected AccountCreatedPage accountCreatedPage;
+    protected DeleteAccountPage deleteAccountPage;
 
     @BeforeEach
     public void setUp() {
@@ -21,10 +24,15 @@ public class TestBase {
         homePage.visitPage("https://automationexercise.com/");
         contactUsPage = new ContactUsPage(driver);
         productsPage = new ProductsPage(driver);
+        cartPage = new CartPage(driver);
+        loginPage = new LoginPage(driver);
+        signupPage = new SignupPage(driver);
+        accountCreatedPage = new AccountCreatedPage(driver);
+        deleteAccountPage = new DeleteAccountPage(driver);
     }
 
     @AfterEach
     public void tearDown() {
-        //driver.quit();
+//        driver.quit();
     }
 }
