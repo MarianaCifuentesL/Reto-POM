@@ -1,8 +1,9 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,17 +14,22 @@ public class CartPage extends CommonActionPages {
 
     public CartPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
-    By cartProducts = By.xpath("//table[@id='cart_info_table']//tr");
-    By signupLoginButton = By.xpath("//a[@href='/login']");
-    By deleteAccountButton = By.xpath("//a[@href='/delete_account']");
+    @FindBy(xpath = "//table[@id='cart_info_table']//tr")
+    private List<WebElement> cartProducts;
+
+    @FindBy(xpath = "//a[@href='/login']")
+    private WebElement signupLoginButton;
+
+    @FindBy(xpath = "//a[@href='/delete_account']")
+    private WebElement deleteAccountButton;
 
     public boolean areProductsInCart() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@id='cart_info_table']//tr")));
-        int productosEnCarrito = getElementCount(cartProducts);
-        return productosEnCarrito > 0;
+        wait.until(ExpectedConditions.visibilityOfAllElements(cartProducts));
+        return !cartProducts.isEmpty();
     }
 
     public void accessLoginPage() {

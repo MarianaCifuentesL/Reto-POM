@@ -1,24 +1,41 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import java.time.Duration;
 
-public class HomePage extends CommonActionPages{
+public class HomePage extends CommonActionPages {
 
     public HomePage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
-    By contactUsButton = By.xpath("//a[@href='/contact_us']");
-    By productsButton = By.xpath("//a[@href='/products']");
-    By homeBanner = By.id("slider-carousel");
-    By subscriptionText = By.xpath("//h2[contains(text(), 'Subscription')]");
-    By emailInput = By.id("susbscribe_email");
-    By subscribeButton = By.id("subscribe");
-    By successMessage = By.xpath("//div[@class='alert-success alert']");
-    By cartButton = By.xpath("//a[@href='/view_cart']");
+    @FindBy(xpath = "//a[@href='/contact_us']")
+    private WebElement contactUsButton;
+
+    @FindBy(xpath = "//a[@href='/products']")
+    private WebElement productsButton;
+
+    @FindBy(id = "slider-carousel")
+    private WebElement homeBanner;
+
+    @FindBy(xpath = "//h2[contains(text(), 'Subscription')]")
+    private WebElement subscriptionText;
+
+    @FindBy(id = "susbscribe_email")
+    private WebElement emailInput;
+
+    @FindBy(id = "subscribe")
+    private WebElement subscribeButton;
+
+    @FindBy(xpath = "//div[@class='alert-success alert']")
+    private WebElement successMessage;
+
+    @FindBy(xpath = "//a[@href='/view_cart']")
+    private WebElement cartButton;
 
     public void accessProductsPage() {
         clickElement(productsButton);
@@ -33,7 +50,7 @@ public class HomePage extends CommonActionPages{
     }
 
     public void scrollToSubscriptionSection() {
-        scrollToElement(subscriptionText);
+        scrollIntoWebElement(subscriptionText);
     }
 
     public boolean isSubscriptionTextVisible() {
