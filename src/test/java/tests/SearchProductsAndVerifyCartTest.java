@@ -22,7 +22,18 @@ public class SearchProductsAndVerifyCartTest extends TestBase {
         String name = "prueba1";
         String email = name + "@email.com";
         loginPage.signUpUser(name, email);
-        signupPage.signUpUser();
+
+        String password = "1234";
+        String firstname = "Mariana";
+        String lastname = "Cifuentes";
+        String address = "1234 Test St";
+        String country = "Canada";
+        String state = "Ontario";
+        String city = "Toronto";
+        String zipcode = "M4B 1B3";
+        String mobileNumber = "1234567890";
+
+        signupPage.signUpUser(password, firstname, lastname, address, country, state, city, zipcode, mobileNumber);
 
         assertTrue(accountCreatedPage.isAccountCreatedMessageVisible(), "No se creó la cuenta correctamente.");
         accountCreatedPage.continueShopping();

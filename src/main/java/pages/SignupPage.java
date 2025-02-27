@@ -1,37 +1,48 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class SignupPage extends CommonActionPages {
 
     public SignupPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
-    By passwordInput = By.id("password");
-    By firstnameInput = By.id("first_name");
-    By lastnameInput = By.id("last_name");
-    By addressInput = By.id("address1");
-    By countryInput = By.id("country");
-    By stateInput = By.id("state");
-    By cityInput = By.id("city");
-    By zipcodeInput = By.id("zipcode");
-    By mobileNumberInput = By.id("mobile_number");
-    By createAccountButton = By.xpath("//button[@data-qa='create-account']");
+    @FindBy(id = "password")
+    private WebElement passwordInput;
 
+    @FindBy(id = "first_name")
+    private WebElement firstnameInput;
 
-    public void signUpUser() {
+    @FindBy(id = "last_name")
+    private WebElement lastnameInput;
 
-        String password = "1234";
-        String firstname = "Mariana";
-        String lastname = "Cifuentes";
-        String address = "1234 Test St";
-        String country = "Canada";
-        String state = "Ontario";
-        String city = "Toronto";
-        String zipcode = "M4B 1B3";
-        String mobileNumber = "1234567890";
+    @FindBy(id = "address1")
+    private WebElement addressInput;
+
+    @FindBy(id = "country")
+    private WebElement countryInput;
+
+    @FindBy(id = "state")
+    private WebElement stateInput;
+
+    @FindBy(id = "city")
+    private WebElement cityInput;
+
+    @FindBy(id = "zipcode")
+    private WebElement zipcodeInput;
+
+    @FindBy(id = "mobile_number")
+    private WebElement mobileNumberInput;
+
+    @FindBy(xpath = "//button[@data-qa='create-account']")
+    private WebElement createAccountButton;
+
+    public void signUpUser(String password, String firstname, String lastname, String address, String country, String state, String city, String zipcode, String mobileNumber) {
 
         writeText(passwordInput, password);
         writeText(firstnameInput, firstname);
@@ -44,6 +55,5 @@ public class SignupPage extends CommonActionPages {
         writeText(mobileNumberInput, mobileNumber);
 
         clickElement(createAccountButton);
-
     }
 }

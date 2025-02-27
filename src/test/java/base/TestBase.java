@@ -19,9 +19,11 @@ public class TestBase {
 
     @BeforeEach
     public void setUp() {
+
+        CommonActionPages commonActions = new CommonActionPages(driver);
+        driver = commonActions.chromeDriverConection();
+
         homePage = new HomePage(driver);
-        driver = homePage.chromeDriverConection();
-        homePage.visitPage("https://automationexercise.com/");
         contactUsPage = new ContactUsPage(driver);
         productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);
@@ -29,6 +31,8 @@ public class TestBase {
         signupPage = new SignupPage(driver);
         accountCreatedPage = new AccountCreatedPage(driver);
         deleteAccountPage = new DeleteAccountPage(driver);
+
+        homePage.visitPage("https://automationexercise.com/");
     }
 
     @AfterEach

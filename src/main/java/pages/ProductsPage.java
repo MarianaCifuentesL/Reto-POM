@@ -1,10 +1,15 @@
 package pages;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.time.Duration;
 import java.util.List;
 
@@ -14,15 +19,29 @@ public class ProductsPage extends CommonActionPages {
 
     public ProductsPage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
-    By searchInput = By.id("search_product");
-    By searchButton = By.id("submit_search");
-    By allProductsHeader = By.xpath("//h2[contains(text(), 'All Products')]");
-    By searchedProductsHeader = By.xpath("//h2[contains(text(), 'Searched Products')]");
-    By productList = By.xpath("//div[@class='features_items']/div");
-    By addToCartButtons = By.xpath("//div[@class='productinfo text-center']//a[@class='btn btn-default add-to-cart']");
-    By continueShoppingButton = By.xpath("//button[@class='btn btn-success close-modal btn-block']");
+    @FindBy(id = "search_product")
+    private WebElement searchInput;
+
+    @FindBy(id = "submit_search")
+    private WebElement searchButton;
+
+    @FindBy(xpath = "//h2[contains(text(), 'All Products')]")
+    private WebElement allProductsHeader;
+
+    @FindBy(xpath = "//h2[contains(text(), 'Searched Products')]")
+    private WebElement searchedProductsHeader;
+
+    @FindBy(xpath = "//div[@class='features_items']/div")
+    private List<WebElement> productList;
+
+    @FindBy(xpath = "//div[@class='productinfo text-center']//a[@class='btn btn-default add-to-cart']")
+    private List<WebElement> addToCartButtons;
+
+    @FindBy(xpath = "//button[@class='btn btn-success close-modal btn-block']")
+    private WebElement continueShoppingButton;
 
     public void searchProduct(String product) {
         writeText(searchInput, product);
@@ -34,7 +53,7 @@ public class ProductsPage extends CommonActionPages {
     }
 
     public boolean areProductsDisplayed() {
-        return getElementCount(productList) > 0;
+        return !productList.isEmpty();
     }
 
     public boolean isProductsPageVisible() {
@@ -42,16 +61,13 @@ public class ProductsPage extends CommonActionPages {
     }
 
     public void addAllSearchedProductsToCart() {
-        List<WebElement> buttons = driver.findElements(addToCartButtons);
-
-        for (WebElement button : buttons) {
+        for (WebElement button : addToCartButtons) {
             scrollIntoWebElement(button);
             button.click();
 
             try {
                 WebDriverWait wait = waitTimeInSeconds(Duration.ofSeconds(5));
-                WebElement popupButton = wait.until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
-                popupButton.click();
+                wait.until(ExpectedConditions.elementToBeClickable(continueShoppingButton)).click();
             } catch (TimeoutException e) {
                 logger.warn("No se encontró el botón de continuar comprando, se sigue con el siguiente producto.");
             }
