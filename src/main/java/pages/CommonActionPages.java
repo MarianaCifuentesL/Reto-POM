@@ -84,5 +84,4 @@ public class CommonActionPages {
         Select dropdown = new Select(driver.findElement(locator));
         dropdown.selectByVisibleText(visibleText);
     }
-
 }

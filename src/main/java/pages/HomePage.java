@@ -18,9 +18,7 @@ public class HomePage extends CommonActionPages{
     By emailInput = By.id("susbscribe_email");
     By subscribeButton = By.id("subscribe");
     By successMessage = By.xpath("//div[@class='alert-success alert']");
-    By loginButton = By.xpath("//a[@href='/login']");
     By cartButton = By.xpath("//a[@href='/view_cart']");
-    By deleteAccountButton = By.xpath("//a[@href='/delete_account']");
 
     public void accessProductsPage() {
         clickElement(productsButton);

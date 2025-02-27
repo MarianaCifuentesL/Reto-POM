@@ -3,10 +3,14 @@ package pages;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.time.Duration;
 import java.util.List;
 
 public class ProductsPage extends CommonActionPages {
+
+    private static final Logger logger = LoggerFactory.getLogger(ProductsPage.class);
 
     public ProductsPage(WebDriver driver) {
         super(driver);
@@ -47,9 +51,9 @@ public class ProductsPage extends CommonActionPages {
             try {
                 WebDriverWait wait = waitTimeInSeconds(Duration.ofSeconds(5));
                 WebElement popupButton = wait.until(ExpectedConditions.elementToBeClickable(continueShoppingButton));
-                popupButton.click(); // Cierra el popup si aparece
+                popupButton.click();
             } catch (TimeoutException e) {
-                System.out.println("No se encontró el botón de continuar comprando, se sigue con el siguiente producto.");
+                logger.warn("No se encontró el botón de continuar comprando, se sigue con el siguiente producto.");
             }
         }
     }

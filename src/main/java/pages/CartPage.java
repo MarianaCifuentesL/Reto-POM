@@ -15,7 +15,6 @@ public class CartPage extends CommonActionPages {
         super(driver);
     }
 
-    By cartButton = By.xpath("//a[@href='/view_cart']");
     By cartProducts = By.xpath("//table[@id='cart_info_table']//tr");
     By signupLoginButton = By.xpath("//a[@href='/login']");
     By deleteAccountButton = By.xpath("//a[@href='/delete_account']");
@@ -23,10 +22,7 @@ public class CartPage extends CommonActionPages {
     public boolean areProductsInCart() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@id='cart_info_table']//tr")));
-
         int productosEnCarrito = getElementCount(cartProducts);
-        System.out.println("Productos en el carrito después del login: " + productosEnCarrito);
-
         return productosEnCarrito > 0;
     }
 

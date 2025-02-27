@@ -9,8 +9,6 @@ public class SignupPage extends CommonActionPages {
         super(driver);
     }
 
-    By nameInput = By.id("name");
-    By emailInput = By.id("email");
     By passwordInput = By.id("password");
     By firstnameInput = By.id("first_name");
     By lastnameInput = By.id("last_name");
@@ -27,7 +25,7 @@ public class SignupPage extends CommonActionPages {
 
         String password = "1234";
         String firstname = "Mariana";
-        String lastname = "Lopez";
+        String lastname = "Cifuentes";
         String address = "1234 Test St";
         String country = "Canada";
         String state = "Ontario";
