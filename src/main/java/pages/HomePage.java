@@ -42,8 +42,7 @@ public class HomePage extends CommonActionPages{
         return isElementVisible(subscriptionText, Duration.ofSeconds(5));
     }
 
-    public void subscribeWithEmail() {
-        String email = "mariana@email.com";
+    public void subscribeWithEmail(String email) {
         writeText(emailInput, email);
         clickElement(subscribeButton);
     }

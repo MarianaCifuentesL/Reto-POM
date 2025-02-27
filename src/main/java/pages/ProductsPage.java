@@ -3,9 +3,7 @@ package pages;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
-import java.time.Instant;
 import java.util.List;
 
 public class ProductsPage extends CommonActionPages {

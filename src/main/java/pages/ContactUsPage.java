@@ -28,13 +28,7 @@ public class ContactUsPage extends CommonActionPages {
         return isElementVisible(getInTouchText, Duration.ofSeconds(5));
     }
 
-    public void sendForm() {
-
-        String name = "Mariana";
-        String email = "mariana@email.com";
-        String subject = "Petición";
-        String message = "¿Podrían cambiar el color de la página?";
-        File uploadFile = new File("src/main/resources/Mapa Mental.png");
+    public void sendForm(String name, String email, String subject, String message, File uploadFile) {
 
         writeText(nameInput, name);
         writeText(emailInput, email);
