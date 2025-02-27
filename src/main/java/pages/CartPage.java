@@ -20,10 +20,6 @@ public class CartPage extends CommonActionPages {
     By signupLoginButton = By.xpath("//a[@href='/login']");
     By deleteAccountButton = By.xpath("//a[@href='/delete_account']");
 
-    public void openCart() {
-        clickElement(cartButton);
-    }
-
     public boolean areProductsInCart() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@id='cart_info_table']//tr")));
@@ -33,7 +29,6 @@ public class CartPage extends CommonActionPages {
 
         return productosEnCarrito > 0;
     }
-
 
     public void accessLoginPage() {
         clickElement(signupLoginButton);

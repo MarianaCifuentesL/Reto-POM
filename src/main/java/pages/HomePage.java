@@ -55,13 +55,4 @@ public class HomePage extends CommonActionPages{
     public void accessCartPage() {
         clickElement(cartButton);
     }
-
-    public void accessLoginPage() {
-        clickElement(loginButton);
-    }
-
-    public void deleteAccount() {
-        clickElement(deleteAccountButton);
-    }
-
 }

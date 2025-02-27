@@ -1,9 +1,12 @@
 package pages;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,14 +16,17 @@ import java.time.Duration;
 public class CommonActionPages {
 
     protected WebDriver driver;
+    private static final String START_MAXIMIZED = "--start-maximized";
 
     public CommonActionPages (WebDriver driver) {
         this.driver = driver;
     }
 
     public WebDriver chromeDriverConection() {
-        System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromedriver/chromedriver.exe");
-        driver = new ChromeDriver();
+        WebDriverManager.chromedriver().setup();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments(START_MAXIMIZED);
+        driver = new ChromeDriver(options);
         return driver;
     }
 
@@ -69,14 +75,9 @@ public class CommonActionPages {
         js.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(locator));
     }
 
-    public void clickAllElements(By locator) {
-        for (var element : driver.findElements(locator)) {
-            element.click();
-        }
-    }
-
-    public String getInputValue(By locator) {
-        return driver.findElement(locator).getAttribute("value");
+    public void scrollIntoWebElement(WebElement element) {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor)  driver;
+        jsExecutor.executeScript("arguments[0].scrollIntoView();", element);
     }
 
     public void selectDropdownByVisibleText(By locator, String visibleText) {

@@ -18,7 +18,7 @@ public class DeleteAccountPage extends CommonActionPages {
         clickElement(continueButton);
     }
 
-    public boolean isDeleteAccountMessageVisible() {
-        return isElementVisible(deleteAccountMessage, Duration.ofSeconds(5));
+    public void isDeleteAccountMessageVisible() {
+        isElementVisible(deleteAccountMessage, Duration.ofSeconds(5));
     }
 }

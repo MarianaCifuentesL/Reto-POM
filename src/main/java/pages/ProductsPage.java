@@ -20,8 +20,6 @@ public class ProductsPage extends CommonActionPages {
     By searchedProductsHeader = By.xpath("//h2[contains(text(), 'Searched Products')]");
     By productList = By.xpath("//div[@class='features_items']/div");
     By addToCartButtons = By.xpath("//div[@class='productinfo text-center']//a[@class='btn btn-default add-to-cart']");
-//    List<WebElement> addToCartButtons = driver.findElements(By.xpath("//div[@class='product']//a[@class='btn btn-default add-to-cart']"));
-
     By continueShoppingButton = By.xpath("//button[@class='btn btn-success close-modal btn-block']");
 
     public void searchProduct(String product) {
@@ -44,9 +42,9 @@ public class ProductsPage extends CommonActionPages {
     public void addAllSearchedProductsToCart() {
         List<WebElement> buttons = driver.findElements(addToCartButtons);
 
-
         for (WebElement button : buttons) {
-            button.click(); // Clic en "Agregar al carrito"
+            scrollIntoWebElement(button);
+            button.click();
 
             try {
                 WebDriverWait wait = waitTimeInSeconds(Duration.ofSeconds(5));
@@ -57,5 +55,4 @@ public class ProductsPage extends CommonActionPages {
             }
         }
     }
-
 }

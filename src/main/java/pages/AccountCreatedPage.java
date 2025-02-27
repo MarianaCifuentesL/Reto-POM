@@ -16,7 +16,6 @@ public class AccountCreatedPage extends CommonActionPages {
 
     public boolean isAccountCreatedMessageVisible() {
         return isElementVisible(accountCreatedMessage, Duration.ofSeconds(5));
-
     }
 
     public void continueShopping() {
